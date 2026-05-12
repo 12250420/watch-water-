@@ -301,22 +301,6 @@ function BridgeMountedSonar({ telemetry, showBeam }) {
   );
 }
 
-function SceneLegend({ telemetry }) {
-  return (
-    <Html position={[-6.15, 1.55, 3.35]} center>
-      <div className="w-64 rounded border border-cyan-100/20 bg-slate-950/70 p-3 text-xs leading-6 text-slate-200 shadow-2xl backdrop-blur">
-        <div className="mb-1 font-semibold text-cyan-100">桥载单波束测距逻辑</div>
-        <div>声呐固定在桥上，沿桥向导轨循环扫描</div>
-        <div>预留变量：sonarDistance = 声呐返回距离</div>
-        <div>青色点线：由测距数据反推的河床剖面</div>
-        <div>红色圆环：桥墩处疑似深坑区域</div>
-        <div className="mt-1 text-amber-100">当前距离：{telemetry.sonarDistance.toFixed(2)} 米</div>
-        <div className="text-cyan-100">系统状态：{telemetry.mode} / {telemetry.status}</div>
-      </div>
-    </Html>
-  );
-}
-
 function SimulationScene({ running, telemetry, setTelemetry, setDataLog, bedMap, setBedMap, showBeam, resetKey }) {
   const simRef = useRef({
     time: 0,
@@ -392,7 +376,6 @@ function SimulationScene({ running, telemetry, setTelemetry, setDataLog, bedMap,
       <Bridge />
       <ScourMarker active={telemetry.mode === MODES.alarm} />
       <BridgeMountedSonar telemetry={telemetry} showBeam={showBeam} />
-      <SceneLegend telemetry={telemetry} />
       <ContactShadows position={[0, -4.38, 0]} opacity={0.45} scale={13} blur={2} far={4} />
       <OrbitControls makeDefault enableDamping dampingFactor={0.08} minDistance={5} maxDistance={14} maxPolarAngle={Math.PI * 0.49} target={[0, -2.1, 0]} />
     </>
