@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ContactShadows, Environment, Html, Line, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Html, Line, OrbitControls } from "@react-three/drei";
 import { Activity, Gauge, Pause, Play, Radar, RotateCcw } from "lucide-react";
 import * as THREE from "three";
 
@@ -383,9 +383,9 @@ function SimulationScene({ running, telemetry, setTelemetry, setDataLog, bedMap,
       <color attach="background" args={["#07111f"]} />
       <fog attach="fog" args={["#07111f", 8, 17]} />
       <ambientLight intensity={0.62} />
+      <hemisphereLight args={["#bfefff", "#4b382c", 0.72]} />
       <directionalLight position={[4, 6, 3]} intensity={1.7} castShadow shadow-mapSize={[2048, 2048]} />
       <pointLight position={[-3, -1, -2]} color="#65e6ff" intensity={1.1} distance={8} />
-      <Environment preset="city" />
       <WaterSurface />
       <Riverbed bedMap={bedMap} />
       <BedSediment />
